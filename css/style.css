@@ -246,3 +246,62 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 60px; }
   .logo { padding: 6px 0; }
   .topbar nav { width: 100%; justify-content: space-between; }
 }
+
+/* ---- Design refresh (v9) ---- */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 120; background: linear-gradient(90deg, var(--green), var(--cyan), var(--pink)); box-shadow: 0 0 8px var(--cyan); }
+.to-top { position: fixed; right: 18px; bottom: 18px; z-index: 110; width: 46px; height: 46px; font-family: var(--pixel); font-size: 14px; cursor: pointer;
+  background: var(--panel); color: var(--green); border: 2px solid var(--green); box-shadow: 4px 4px 0 var(--pink); opacity: 0; pointer-events: none; transform: translateY(10px); transition: .2s; }
+.to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+
+/* Cards */
+.card .thumb { position: relative; }
+.card .thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(7,9,15,.85)); }
+.card .chip { position: absolute; left: 10px; bottom: 10px; z-index: 1; font-family: var(--term); font-size: 16px; color: var(--green); background: rgba(7,9,15,.8); border: 1px solid var(--green); padding: 0 6px; }
+.card h3 { font-size: 11px; }
+.card[hidden] { display: none; }
+
+/* Home counters & search */
+.counters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 10px 0 10px; }
+.counters div { background: var(--panel); border: 2px solid var(--line); border-left: 4px solid var(--cyan); padding: 14px 16px; }
+.counters b { display: block; font-family: var(--pixel); font-size: 22px; color: var(--yellow); }
+.counters span { color: var(--muted); font-size: 14px; }
+.all-link { text-align: center; margin-top: 28px; }
+.search { width: 100%; margin: 0 0 22px; padding: 14px 16px; font-family: var(--term); font-size: 22px; color: var(--text); background: var(--panel); border: 2px solid var(--line); outline: none; }
+.search:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(46,230,255,.15); }
+.no-results { font-family: var(--term); font-size: 20px; color: var(--pink); text-align: center; }
+
+/* Post hero banner */
+.post-hero { position: relative; padding: 70px 28px 34px; margin: 24px 0 0; border: 2px solid var(--line); border-bottom: 2px solid var(--line);
+  background: linear-gradient(180deg, rgba(7,9,15,.55), rgba(7,9,15,.95)), var(--cover) center/cover no-repeat, var(--bg2); }
+.post-hero h1 { max-width: 900px; }
+.post-meta { font-family: var(--term); font-size: 20px; color: var(--cyan); }
+.post-intro { font-size: 19px; line-height: 1.75; max-width: 900px; margin: 22px 0 0; padding-left: 16px; border-left: 4px solid var(--pink); color: var(--text); }
+
+/* Prose & entries */
+.prose h2 { padding-top: 18px; border-top: 2px dashed var(--line); }
+.prose > h2:first-of-type { border-top: 0; }
+.entry { transition: border-color .15s, transform .15s, box-shadow .15s; }
+.entry:hover { border-color: var(--cyan); transform: translateX(3px); box-shadow: 4px 4px 0 rgba(255,62,165,.5); }
+.entry p { line-height: 1.75; }
+.entry h3 { line-height: 1.35; }
+.fact { transition: transform .15s, border-color .15s; }
+.fact:hover { transform: translateY(-3px); border-color: var(--yellow); }
+
+/* Pager */
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+.pager a { display: block; padding: 16px; background: var(--panel); border: 2px solid var(--line); text-decoration: none; color: var(--text); font-weight: 600; }
+.pager a:hover { border-color: var(--green); }
+.pager small { display: block; font-family: var(--term); font-size: 18px; color: var(--green); font-weight: 400; margin-bottom: 4px; }
+.pager .next { text-align: right; }
+
+@media (max-width: 600px) {
+  .post-hero { padding: 48px 16px 22px; margin-top: 16px; }
+  .post-intro { font-size: 17px; }
+  .counters b { font-size: 16px; }
+  .counters div { padding: 10px; }
+  .pager { grid-template-columns: 1fr; }
+  .pager .next { text-align: left; }
+  .to-top { right: 12px; bottom: 12px; width: 42px; height: 42px; }
+}
+.stat .v, .post-hero h1, .card h3, .about-hero h1 { overflow-wrap: anywhere; }
+@media (max-width: 420px) { .post-hero h1 { font-size: 15px; } }

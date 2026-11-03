@@ -18,14 +18,14 @@
     langBtn.textContent = lang === "tr" ? "EN" : "TR";
   }
 
-  function cards() {
-    const live = POSTS.map((p) => `
-      <a class="card" href="#/post/${p.slug}">
-        <div class="thumb" style="background-image:url('${img(p.cover, 640)}')"></div>
+  function cards(list = POSTS) {
+    const live = list.map((p) => `
+      <a class="card" href="#/post/${p.slug}" data-search="${esc((L(p.title) + " " + L(p.summary)).toLocaleLowerCase(lang))}">
+        <div class="thumb" style="background-image:url('${img(p.cover, 640)}')"><span class="chip">${esc(L(p.kicker).replace(/^\/\/\s*/, ""))}</span></div>
         <div class="body">
           <h3>${esc(L(p.title))}</h3>
           <p>${esc(L(p.summary))}</p>
-          <div class="meta">${p.readMin} ${t("minRead")} · ${t("readMore")}</div>
+          <div class="meta">${p.readMin} ${t("minRead")} · ${p.entries.length} ${t("entries")} · ${t("readMore")}</div>
         </div>
       </a>`).join("");
     const soon = t("soonTopics").map((s) => `
@@ -49,12 +49,20 @@
           <div class="base"></div><div class="kbd"></div>
         </div>
       </section>
-      <h2 class="section-title">${esc(t("topicsTitle"))}</h2>
-      ${cards()}`;
+      <div class="counters">
+        <div><b>${POSTS.length}</b><span>${esc(t("cntPosts"))}</span></div>
+        <div><b>${POSTS.reduce((n, p) => n + p.entries.length, 0)}</b><span>${esc(t("cntEntries"))}</span></div>
+        <div><b>${POSTS.reduce((n, p) => n + (p.facts ? p.facts.items.length : 0), 0)}</b><span>${esc(t("cntFacts"))}</span></div>
+      </div>
+      <h2 class="section-title">${esc(t("latest"))}</h2>
+      ${cards(POSTS.slice(-6).reverse())}
+      <p class="all-link"><a class="btn" href="#/topics">${esc(t("allTopics"))}</a></p>`;
   }
 
   function topics() {
-    return `<h2 class="section-title">${esc(t("topicsTitle"))}</h2>${cards()}`;
+    return `<h2 class="section-title">${esc(t("topicsTitle"))}</h2>
+      <input class="search" type="search" placeholder="${esc(t("searchPh"))}" aria-label="${esc(t("searchPh"))}">
+      ${cards()}<p class="no-results" hidden>${esc(t("noResults"))}</p>`;
   }
 
   function figure(name, caption) {
@@ -108,11 +116,12 @@
           <h3>${esc(L(f.title))}</h3><p>${esc(L(f.text))}</p></div></div>`).join("")}</div>` : "";
 
     return `
-      <section class="post-hero">
+      <section class="post-hero" style="--cover:url('${img(p.cover, 1280)}')">
         <div class="kicker">${esc(L(p.kicker))}</div>
         <h1>${esc(L(p.title))}</h1>
-        <p>${esc(L(p.intro))}</p>
+        <div class="post-meta">⏱ ${p.readMin} ${t("minRead")} · 📜 ${p.entries.length} ${t("entries")}${p.facts ? ` · 💡 ${p.facts.items.length} ${t("cntFacts")}` : ""}</div>
       </section>
+      <p class="post-intro">${esc(L(p.intro))}</p>
       <div class="post-layout">
         <aside class="toc"><h4>${esc(t("toc"))}</h4>${toc}<br><a href="#/topics">${esc(t("back"))}</a></aside>
         <div class="prose">
@@ -121,8 +130,15 @@
             ${filters.map((f) => `<button data-f="${f.key}">${esc(L(f.label))}</button>`).join("")}
           </div>
           ${sections}${stats}${facts}
+          ${pager(p)}
         </div>
       </div>`;
+  }
+
+  function pager(p) {
+    const i = POSTS.indexOf(p), prev = POSTS[i - 1], next = POSTS[i + 1];
+    const link = (q, cls, label) => q ? `<a class="${cls}" href="#/post/${q.slug}"><small>${esc(label)}</small>${esc(L(q.title))}</a>` : "<span></span>";
+    return `<nav class="pager">${link(prev, "prev", t("prevPost"))}${link(next, "next", t("nextPost"))}</nav>`;
   }
 
   function about() {
@@ -175,6 +191,26 @@
     const anchor = parts[0] === "post" && parts[2] && document.getElementById(parts[2]);
     if (anchor) anchor.scrollIntoView(); else window.scrollTo(0, 0);
   }
+
+  app.addEventListener("input", (e) => {
+    if (!e.target.matches(".search")) return;
+    const q = e.target.value.trim().toLocaleLowerCase(lang);
+    let shown = 0;
+    app.querySelectorAll(".card[data-search]").forEach((c) => {
+      const hit = !q || c.dataset.search.includes(q);
+      c.hidden = !hit; shown += hit;
+    });
+    app.querySelector(".no-results").hidden = shown > 0;
+  });
+
+  const progress = document.getElementById("progress");
+  const toTop = document.getElementById("toTop");
+  window.addEventListener("scroll", () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + "%";
+    toTop.classList.toggle("show", scrollY > 600);
+  }, { passive: true });
+  toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
   app.addEventListener("click", (e) => {
     const btn = e.target.closest(".filters button");

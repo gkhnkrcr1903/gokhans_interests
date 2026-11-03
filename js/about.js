@@ -12,8 +12,6 @@ window.ABOUT = {
   },
   facts: [
     { icon: "🎂", label: { tr: "Doğum", en: "Born" }, value: { tr: "24 Ocak 1984 (Kova burcu, yani 'farklı düşünür')", en: "24 January 1984 (Aquarius, i.e. 'thinks different')" } },
-    { icon: "🎓", label: { tr: "Okul", en: "School" }, value: { tr: "Abant İzzet Baysal Üniversitesi, Fizik (İngilizce)", en: "Abant İzzet Baysal University, Physics (English-medium)" } },
-    { icon: "💻", label: { tr: "Meslek", en: "Job" }, value: { tr: "Yazılım Uzmanı", en: "Software Specialist" } },
     { icon: "📍", label: { tr: "Kuşak", en: "Generation" }, value: { tr: "Gururlu bir 90'lar çocuğu", en: "A proud 90s kid" } },
     { icon: "☕", label: { tr: "Eski İşler", en: "Past Jobs" }, value: { tr: "Kırtasiye, lokumcu, kafe ve bar", en: "Stationery shop, lokum shop, cafés and bars" } }
   ],
