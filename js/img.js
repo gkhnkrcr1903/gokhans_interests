@@ -59,9 +59,23 @@
   const cache = {};
   const local = (name) => (cache[name] = cache[name] || LOCAL[name.slice(6)]());
 
+  // Images copied into the repo (img/c/<key>.<ext>, listed in js/img-manifest.js) load from here first,
+  // so a file deleted on Commons doesn't break the post; Commons stays as the fallback.
+  const OWN = window.IMG_LOCAL || {};
+  const own = (name) => OWN[name] && "img/c/" + OWN[name];
+
   window.IMG = {
     thumb(name, w) {
       if (name.startsWith("local:")) return local(name);
+      if (name.startsWith("file:")) return name.slice(5);
+      if (own(name)) return own(name);
+      const file = name.replace(/ /g, "_");
+      const h = md5(file);
+      const enc = encodeURIComponent(file);
+      const ext = /\.svg$/i.test(file) ? ".png" : "";
+      return `https://upload.wikimedia.org/wikipedia/commons/thumb/${h[0]}/${h.slice(0, 2)}/${enc}/${step(w)}px-${enc}${ext}`;
+    },
+    remote(name, w) {
       const file = name.replace(/ /g, "_");
       const h = md5(file);
       const enc = encodeURIComponent(file);
@@ -71,6 +85,8 @@
     // Slower but always works (also for images smaller than the requested width).
     fallback(name, w) {
       if (name.startsWith("local:")) return local(name);
+      if (name.startsWith("file:")) return name.slice(5);
+      if (own(name)) return IMG.remote(name, w);
       return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(name.replace(/ /g, "_")) + "?width=" + step(w);
     },
     md5
