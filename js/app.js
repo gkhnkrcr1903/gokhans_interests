@@ -125,6 +125,42 @@
       </div>`;
   }
 
+  function about() {
+    const a = window.ABOUT;
+    if (!a) return notFound();
+    const postLink = (slug) => (POSTS.some((p) => p.slug === slug) ? `#/post/${slug}` : "#/topics");
+    return `
+      <section class="about-hero">
+        <div class="avatar" aria-hidden="true"><span>GK</span></div>
+        <div>
+          <p class="term">${esc(t("aboutKicker"))}</p>
+          <h1>${esc(a.name)}</h1>
+          <p class="role">${esc(L(a.role))}</p>
+          <p class="tagline">${esc(L(a.tagline))}</p>
+        </div>
+      </section>
+      <p class="about-intro">${esc(L(a.intro))}</p>
+      <div class="about-facts">${a.facts.map((f) => `
+        <div class="about-fact"><span class="ico">${f.icon}</span>
+          <div><div class="lbl">${esc(L(f.label))}</div><div class="val">${esc(L(f.value))}</div></div></div>`).join("")}</div>
+      <div class="about-grid">
+        <div class="about-story">${a.story.map((s) => `
+          <h2 class="section-title">${esc(L(s.title))}</h2><p>${esc(L(s.text))}</p>`).join("")}</div>
+        <aside class="about-side">
+          <div class="chart char-stats"><h4>${esc(t("aboutStats"))}</h4>${a.stats.map((s) => `
+            <div class="bar-row"><span class="bl">${esc(L(s.label))}</span>
+              <span class="bar"><span style="width:${s.value}%"></span></span><span class="bv">${s.value}</span></div>`).join("")}</div>
+          <div class="chart achievements"><h4>${esc(t("aboutAchievements"))}</h4>
+            <ul>${a.achievements.map((x) => `<li>${esc(L(x))}</li>`).join("")}</ul></div>
+        </aside>
+      </div>
+      <h2 class="section-title">${esc(t("aboutInterests"))}</h2>
+      <div class="grid">${a.interests.map((i) => `
+        <a class="card interest" href="${postLink(i.link)}">
+          <div class="body"><div class="ico">${i.icon}</div><h3>${esc(L(i.title))}</h3><p>${esc(L(i.text))}</p>
+          <div class="meta">${esc(t("readMore"))}</div></div></a>`).join("")}</div>`;
+  }
+
   function notFound() { return `<div class="notfound">${esc(t("notFound"))}</div>`; }
 
   function render() {
@@ -132,6 +168,7 @@
     const parts = location.hash.replace(/^#\/?/, "").split("/");
     if (parts[0] === "post") app.innerHTML = post(parts[1]);
     else if (parts[0] === "topics") app.innerHTML = topics();
+    else if (parts[0] === "about") app.innerHTML = about();
     else if (!parts[0]) app.innerHTML = home();
     else app.innerHTML = notFound();
 
