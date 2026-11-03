@@ -178,6 +178,58 @@
           <div class="meta">${esc(t("readMore"))}</div></div></a>`).join("")}</div>`;
   }
 
+  function work(tab) {
+    const w = window.WORK;
+    if (!w) return notFound();
+    const tabs = `<nav class="work-tabs" aria-label="${esc(t("navWork"))}">
+      <a href="#/work" class="${tab !== "projects" ? "active" : ""}">📄 ${esc(t("workCv"))}</a>
+      <a href="#/work/projects" class="${tab === "projects" ? "active" : ""}">🛠️ ${esc(t("workProjects"))}</a></nav>`;
+    const head = `
+      <section class="work-hero">
+        <p class="term">&gt; cat portfolio.txt_</p>
+        <h1>${esc(window.ABOUT ? window.ABOUT.name : "")}</h1>
+        <p class="role">${esc(L(w.headline))}</p>
+        <p class="work-intro">${esc(L(w.intro))}</p>
+        <div class="work-links">${w.links.map((l) => `<a class="btn small" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("")}</div>
+        <div class="counters">${w.stats.map((s) => `<div><b>${esc(s.value)}</b><span>${esc(L(s.label))}</span></div>`).join("")}</div>
+      </section>${tabs}`;
+    if (tab === "projects") {
+      return head + `
+        <div class="pfilters">${w.projectFilters.map((f, i) => `<button class="${i ? "" : "active"}" data-pf="${f.key}">${esc(L(f.label))}</button>`).join("")}</div>
+        <div class="grid projects">${w.projects.map((pr) => `
+          <article class="card project" data-cats="${pr.cat.join(" ")}">
+            <div class="body">
+              <div class="p-head"><h3>${esc(pr.name)}</h3><span class="chip-s">${esc(L(pr.status))}</span></div>
+              <p>${esc(L(pr.text))}</p>
+              <div class="p-tech">${esc(pr.tech)}</div>
+              <div class="p-links">${pr.links.length ? pr.links.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(L(l.label))} ↗</a>`).join("") : `<span>${esc(t("noPublicLink"))}</span>`}</div>
+            </div>
+          </article>`).join("")}</div>`;
+    }
+    return head + `
+      <div class="work-grid">
+        <div>
+          <h2 class="section-title">${esc(t("workExperience"))}</h2>
+          <div class="timeline cv">${w.experience.map((x, i) => `
+            <article class="entry cv-entry c${i % 4}">
+              <div>
+                <span class="year">${esc(L(x.period))}</span>
+                <h3>${esc(L(x.role))}</h3>
+                <p class="cv-company">${esc(x.company)} · ${esc(x.place)}</p>
+                <p>${esc(L(x.text))}</p>
+                ${x.tech ? `<p class="p-tech">${esc(x.tech)}</p>` : ""}
+              </div>
+            </article>`).join("")}</div>
+        </div>
+        <aside class="work-side">
+          <div class="chart"><h4>${esc(t("workEducation"))}</h4>${w.education.map((e) => `<p><b>${esc(L(e.title))}</b><br>${esc(e.place)}<br><span class="muted">${esc(e.period)}</span></p>`).join("")}</div>
+          <div class="chart"><h4>${esc(t("workSkills"))}</h4><div class="skill-tags">${w.skills.map((k) => `<span>${esc(k)}</span>`).join("")}</div></div>
+          <div class="chart"><h4>${esc(t("workCerts"))}</h4><ul class="cert-list">${w.certificates.map((c) => `<li>${esc(L(c))}</li>`).join("")}</ul></div>
+          <div class="chart"><h4>${esc(t("workLangs"))}</h4><p>${w.languages.map((l) => esc(L(l))).join(", ")}</p></div>
+        </aside>
+      </div>`;
+  }
+
   function notFound() { return `<div class="notfound">${esc(t("notFound"))}</div>`; }
 
   // Try the fast thumbnail first, then the slower redirect URL, then a text placeholder.
@@ -210,6 +262,7 @@
     if (parts[0] === "post") app.innerHTML = post(parts[1]);
     else if (parts[0] === "topics") app.innerHTML = topics();
     else if (parts[0] === "about") app.innerHTML = about();
+    else if (parts[0] === "work") app.innerHTML = work(parts[1]);
     else if (!parts[0]) app.innerHTML = home();
     else app.innerHTML = notFound();
 
@@ -239,6 +292,12 @@
   toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
   app.addEventListener("click", (e) => {
+    const pf = e.target.closest(".pfilters button");
+    if (pf) {
+      app.querySelectorAll(".pfilters button").forEach((b) => b.classList.toggle("active", b === pf));
+      app.querySelectorAll(".project").forEach((c) => (c.hidden = pf.dataset.pf !== "all" && !c.dataset.cats.split(" ").includes(pf.dataset.pf)));
+      return;
+    }
     const btn = e.target.closest(".filters button");
     if (btn) {
       app.querySelectorAll(".filters button").forEach((b) => b.classList.toggle("active", b === btn));
