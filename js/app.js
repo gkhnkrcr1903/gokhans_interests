@@ -74,7 +74,7 @@
 
     const sections = p.sections.map((s) => {
       const entries = p.entries.filter((e) => e.section === s.id).map((e) => `
-        <article class="entry ${e.cat}">
+        <article class="entry ${e.cat} c${filters.findIndex((f) => f.key === e.cat)}">
           ${figure(e.img, L(e.caption) || L(e.title))}
           <div>
             <span class="year">${esc(e.year)}</span><span class="tag">${esc(catLabel(e.cat))}</span>
