@@ -20,7 +20,7 @@ window.I18N = {
     footer: "© 2026 Gökhan'ın İlgileri",
     imgCredit: "Görseller: Wikimedia Commons (ilgili lisanslar altında)",
     notFound: "Sayfa bulunamadı. GAME OVER.",
-    soonTopics: ["Uzay Keşfi", "Yapay Zekâ Tarihi"]
+    soonTopics: ["Uzay Keşfi"]
   },
   en: {
     siteTitle: "Gökhan's Interests",
@@ -42,6 +42,6 @@ window.I18N = {
     footer: "© 2026 Gökhan's Interests",
     imgCredit: "Images: Wikimedia Commons (under their respective licenses)",
     notFound: "Page not found. GAME OVER.",
-    soonTopics: ["Space Exploration", "History of AI"]
+    soonTopics: ["Space Exploration"]
   }
 };
