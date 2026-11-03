@@ -2,7 +2,7 @@
 window.POSTS = window.POSTS || [];
 window.POSTS.push({
   slug: "matrix-uclemesi",
-  cover: "Digital rain animation big letters shine.gif",
+  cover: "local:digitalrain",
   readMin: 16,
   kicker: { tr: "// KONU 10 · KIRMIZI HAP", en: "// TOPIC 10 · RED PILL" },
   title: { tr: "Matrix Üçlemesi: Kaşık Yok, Ama Hikâye Çok", en: "The Matrix Trilogy: There Is No Spoon, but Plenty of Stories" },
@@ -43,7 +43,7 @@ window.POSTS.push({
     { section: "matrix", year: "1999", cat: "tech", img: "Wachowskis.jpg", caption: { tr: "Wachowskiler", en: "The Wachowskis" },
       title: { tr: "Bullet Time", en: "Bullet Time" },
       text: { tr: "Neo'nun kurşunlardan kaçtığı sahne için oyuncunun etrafına yay şeklinde ~120 fotoğraf makinesi ve iki film kamerası dizildi. Makineler sırayla tetiklendi ve aradaki kareler bilgisayarla tamamlandı. Teknik onlarca filmde, reklamda ve oyunda (Max Payne!) taklit edildi.", en: "For Neo dodging bullets, ~120 still cameras and two film cameras were arranged in an arc around the actor, fired in sequence, with frames in between filled by computer. The technique was copied in countless films, ads and games (Max Payne!)." } },
-    { section: "matrix", year: "1999", cat: "tech", img: "Digital rain animation big letters shine.gif", caption: { tr: "Yeşil kod yağmuru", en: "Green code rain" },
+    { section: "matrix", year: "1999", cat: "tech", img: "local:digitalrain", caption: { tr: "Yeşil kod yağmuru", en: "Green code rain" },
       title: { tr: "Yeşil Kod Yağmuru = Suşi Tarifleri", en: "The Green Code Rain = Sushi Recipes" },
       text: { tr: "Yapım tasarımcısı Simon Whiteley, ünlü yeşil kodu eşinin Japonca yemek kitabındaki karakterleri tarayarak yarattığını anlattı. Yani Matrix'in kalbinde aslında suşi tarifleri akıyor!", en: "Production designer Simon Whiteley said he created the famous green code by scanning characters from his wife's Japanese cookbooks. So sushi recipes flow at the heart of the Matrix!" } },
     { section: "matrix", year: "1999", cat: "tech", img: "Street sign Sydney 1990s Hay.jpg", caption: { tr: "Sidney, 90'lar", en: "Sydney, 1990s" },
@@ -92,7 +92,7 @@ window.POSTS.push({
   facts: {
     title: { tr: "Eğlenceli Bilgiler", en: "Fun Facts" },
     items: [
-      { img: "Digital rain animation big letters shine.gif", caption: { tr: "Yeşil kod yağmuru", en: "Green code rain" },
+      { img: "local:digitalrain", caption: { tr: "Yeşil kod yağmuru", en: "Green code rain" },
         title: { tr: "Baudrillard'ın kitabı", en: "Baudrillard's book" },
         text: { tr: "Neo disketleri, içi oyulmuş bir 'Simulacra ve Simülasyon' (Jean Baudrillard) kitabında saklar. Oyuncuların hazırlık için bu kitabı okuması istenmişti.", en: "Neo hides disks in a hollowed-out copy of Jean Baudrillard's 'Simulacra and Simulation'. The cast was asked to read it as prep." } },
       { img: "Old Nokia banana.JPG", caption: { tr: "Nokia 8110: 'muz telefon'", en: "Nokia 8110: the 'banana phone'" },

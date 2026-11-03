@@ -7,8 +7,7 @@
 
   const t = (k) => I18N[lang][k];
   const L = (o) => (o && typeof o === "object" && !Array.isArray(o) ? o[lang] ?? o.tr : o);
-  const img = (name, w = 640) =>
-    "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(name.replace(/ /g, "_")) + "?width=" + w;
+  const img = (name, w = 500) => IMG.thumb(name, w);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   function applyStatic() {
@@ -21,7 +20,7 @@
   function cards(list = POSTS) {
     const live = list.map((p) => `
       <a class="card" href="#/post/${p.slug}" data-search="${esc((L(p.title) + " " + L(p.summary)).toLocaleLowerCase(lang))}">
-        <div class="thumb" style="background-image:url('${img(p.cover, 640)}')"><span class="chip">${esc(L(p.kicker).replace(/^\/\/\s*/, ""))}</span></div>
+        <div class="thumb" data-bg="${esc(p.cover)}" data-w="500"><span class="chip">${esc(L(p.kicker).replace(/^\/\/\s*/, ""))}</span></div>
         <div class="body">
           <h3>${esc(L(p.title))}</h3>
           <p>${esc(L(p.summary))}</p>
@@ -66,8 +65,8 @@
   }
 
   function figure(name, caption) {
-    return `<figure data-full="${esc(img(name, 1280))}" data-cap="${esc(caption)}">
-      <img loading="lazy"${/\.svg$/i.test(name) ? ' class="logo"' : ""} src="${esc(img(name))}" alt="${esc(caption)}" onerror="this.outerHTML='<div class=&quot;img-fallback&quot;>${esc(caption).replace(/'/g, "")}</div>'">
+    return `<figure data-name="${esc(name)}" data-cap="${esc(caption)}">
+      <img loading="lazy" decoding="async" width="500" height="375"${/\.svg$/i.test(name) ? ' class="logo"' : ""} src="${esc(img(name))}" data-fb="${esc(IMG.fallback(name, 500))}" alt="${esc(caption)}" onerror="imgError(this)">
       <figcaption>${esc(caption)}</figcaption></figure>`;
   }
 
@@ -117,7 +116,7 @@
           <h3>${esc(L(f.title))}</h3><p>${esc(L(f.text))}</p></div></div>`).join("")}</div>` : "";
 
     return `
-      <section class="post-hero" style="--cover:url('${img(p.cover, 1280)}')">
+      <section class="post-hero" data-bg="${esc(p.cover)}" data-w="1280" data-var="--cover">
         <div class="kicker">${esc(L(p.kicker))}</div>
         <h1>${esc(L(p.title))}</h1>
         <div class="post-meta">⏱ ${p.readMin} ${t("minRead")} · 📜 ${p.entries.length} ${t("entries")}${p.facts ? ` · 💡 ${p.facts.items.length} ${t("cntFacts")}` : ""}</div>
@@ -181,6 +180,30 @@
 
   function notFound() { return `<div class="notfound">${esc(t("notFound"))}</div>`; }
 
+  // Try the fast thumbnail first, then the slower redirect URL, then a text placeholder.
+  window.imgError = (el) => {
+    if (el.dataset.fb && el.src !== el.dataset.fb) { el.src = el.dataset.fb; return; }
+    const d = document.createElement("div");
+    d.className = "img-fallback"; d.textContent = el.alt;
+    el.replaceWith(d);
+  };
+
+  function loadBg(el) {
+    const name = el.dataset.bg, w = +el.dataset.w || 500;
+    const apply = (url) => (el.dataset.var ? el.style.setProperty(el.dataset.var, `url("${url}")`) : (el.style.backgroundImage = `url("${url}")`));
+    const probe = new Image();
+    probe.decoding = "async";
+    probe.onload = () => apply(probe.src);
+    probe.onerror = () => { if (!probe.dataset.fb) { probe.dataset.fb = 1; probe.src = IMG.fallback(name, w); } };
+    probe.src = IMG.thumb(name, w);
+  }
+  const bgObserver = "IntersectionObserver" in window
+    ? new IntersectionObserver((items) => items.forEach((it) => { if (it.isIntersecting) { bgObserver.unobserve(it.target); loadBg(it.target); } }), { rootMargin: "300px" })
+    : null;
+  function hydrate() {
+    app.querySelectorAll("[data-bg]").forEach((el) => (bgObserver ? bgObserver.observe(el) : loadBg(el)));
+  }
+
   function render() {
     applyStatic();
     const parts = location.hash.replace(/^#\/?/, "").split("/");
@@ -190,6 +213,7 @@
     else if (!parts[0]) app.innerHTML = home();
     else app.innerHTML = notFound();
 
+    hydrate();
     const anchor = parts[0] === "post" && parts[2] && document.getElementById(parts[2]);
     if (anchor) anchor.scrollIntoView(); else window.scrollTo(0, 0);
   }
@@ -222,10 +246,16 @@
         el.classList.toggle("hidden", btn.dataset.f !== "all" && el.dataset.cat !== btn.dataset.f));
       return;
     }
-    const fig = e.target.closest("figure[data-full]");
+    const fig = e.target.closest("figure[data-name]");
     if (fig && fig.querySelector("img")) {
       const lb = document.getElementById("lightbox");
-      lb.querySelector("img").src = fig.dataset.full;
+      const big = lb.querySelector("img");
+      big.src = fig.querySelector("img").currentSrc; // show the cached thumb instantly
+      big.dataset.fb = IMG.fallback(fig.dataset.name, 1280);
+      big.onerror = () => { if (big.src !== big.dataset.fb) big.src = big.dataset.fb; };
+      const hi = new Image();
+      hi.onload = () => { big.src = hi.src; };
+      hi.src = IMG.thumb(fig.dataset.name, 1280);
       lb.querySelector("figcaption").textContent = fig.dataset.cap;
       lb.hidden = false;
     }

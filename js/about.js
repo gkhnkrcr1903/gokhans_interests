@@ -7,11 +7,11 @@ window.ABOUT = {
     en: "Level 1984 · Class: Developer · Race: 90s Kid"
   },
   intro: {
-    tr: "Merhaba, ben Gökhan! 24 Ocak 1984'te, yani Macintosh'un tanıtıldığı ve Tetris'in yazıldığı yıl dünyaya geldim — bilgisayar ve oyun sevgim bu yüzden tesadüf olamaz. Disketle büyüdüm, jetonla oynadım, mIRC'te sohbet ettim, Nokia 3310'da yılan besledim. Bugün yazılım uzmanı olarak çalışıyorum; yani çocukken 'bilgisayarla oynama artık!' diyen herkese resmî olarak cevap verebilmiş durumdayım.",
-    en: "Hi, I'm Gökhan! I was born on 24 January 1984 — the year the Macintosh was unveiled and Tetris was written — so my love of computers and games can't be a coincidence. I grew up with floppies, played on arcade tokens, chatted on mIRC and fed the snake on a Nokia 3310. Today I work as a software specialist, which means I can finally give an official reply to everyone who said 'stop playing on the computer!' when I was a kid."
+    tr: "Merhaba, ben Gökhan! 1984'te, yani Macintosh'un tanıtıldığı ve Tetris'in yazıldığı yıl dünyaya geldim — bilgisayar ve oyun sevgim bu yüzden tesadüf olamaz. Disketle büyüdüm, jetonla oynadım, mIRC'te sohbet ettim, Nokia 3310'da yılan besledim. Bugün yazılım uzmanı olarak çalışıyorum; yani çocukken 'bilgisayarla oynama artık!' diyen herkese resmî olarak cevap verebilmiş durumdayım.",
+    en: "Hi, I'm Gökhan! I was born in 1984 — the year the Macintosh was unveiled and Tetris was written — so my love of computers and games can't be a coincidence. I grew up with floppies, played on arcade tokens, chatted on mIRC and fed the snake on a Nokia 3310. Today I work as a software specialist, which means I can finally give an official reply to everyone who said 'stop playing on the computer!' when I was a kid."
   },
   facts: [
-    { icon: "🎂", label: { tr: "Doğum", en: "Born" }, value: { tr: "24 Ocak 1984 (Kova burcu, yani 'farklı düşünür')", en: "24 January 1984 (Aquarius, i.e. 'thinks different')" } },
+    { icon: "🎂", label: { tr: "Doğum", en: "Born" }, value: { tr: "1984 (Macintosh ve Tetris'le aynı yıl!)", en: "1984 (same year as the Macintosh and Tetris!)" } },
     { icon: "📍", label: { tr: "Kuşak", en: "Generation" }, value: { tr: "Gururlu bir 90'lar çocuğu", en: "A proud 90s kid" } },
     { icon: "☕", label: { tr: "Eski İşler", en: "Past Jobs" }, value: { tr: "Kırtasiye, lokumcu, kafe ve bar", en: "Stationery shop, lokum shop, cafés and bars" } }
   ],

@@ -34,7 +34,7 @@ window.POSTS.push({
     { section: "bilim", year: "1961", cat: "science", img: "EdwardLorenz.jpg", caption: { tr: "Edward Lorenz", en: "Edward Lorenz" },
       title: { tr: "Edward Lorenz'in Yuvarlama Hatası", en: "Edward Lorenz's Rounding Error" },
       text: { tr: "MIT'de meteorolog Edward Lorenz, hava durumu simülasyonunu tekrarlarken 0,506127 yerine 0,506 girdi. Kahve almaya gidip döndüğünde, bu küçücük farkın tahmini tamamen değiştirdiğini gördü. Bu, kaos teorisinin doğuşuydu.", en: "At MIT, meteorologist Edward Lorenz re-ran a weather simulation entering 0.506 instead of 0.506127. Coming back from a coffee break, he saw this tiny difference had completely changed the forecast. Chaos theory was born." } },
-    { section: "bilim", year: "1972", cat: "science", img: "A Trajectory Through Phase Space in a Lorenz Attractor.gif", caption: { tr: "Lorenz çekeri: kelebek kanadı şeklinde", en: "The Lorenz attractor: shaped like butterfly wings" },
+    { section: "bilim", year: "1972", cat: "science", img: "Lorenz attractor yb.svg", caption: { tr: "Lorenz çekeri: kelebek kanadı şeklinde", en: "The Lorenz attractor: shaped like butterfly wings" },
       title: { tr: "'Brezilya'da Bir Kelebek…'", en: "'Does the Flap of a Butterfly's Wings in Brazil…'" },
       text: { tr: "Lorenz 1972'de bir konferansta şu başlıklı konuşmayı yaptı: 'Öngörülebilirlik: Brezilya'da bir kelebeğin kanat çırpması Teksas'ta bir kasırgaya yol açar mı?' İlginç tesadüf: Lorenz'in denklemlerinin çizdiği şekil de bir kelebeğin kanatlarına benziyordu.", en: "In 1972 Lorenz gave a talk titled 'Predictability: Does the Flap of a Butterfly's Wings in Brazil Set Off a Tornado in Texas?' Fun coincidence: the shape his equations draw also looks like butterfly wings." },
       facts: { tr: ["Hava durumu ~2 haftadan uzun güvenle tahmin edilemez", "Bu sınırın nedeni kaos"], en: ["Weather can't be reliably forecast beyond ~2 weeks", "Chaos is the reason why"] } },
@@ -82,7 +82,7 @@ window.POSTS.push({
   facts: {
     title: { tr: "İlginç Bilgiler", en: "Fun Facts" },
     items: [
-      { img: "A Trajectory Through Phase Space in a Lorenz Attractor.gif", caption: { tr: "Lorenz çekeri", en: "Lorenz attractor" },
+      { img: "Lorenz attractor yb.svg", caption: { tr: "Lorenz çekeri", en: "Lorenz attractor" },
         title: { tr: "Kelebek önce martıydı", en: "The butterfly was first a seagull" },
         text: { tr: "Lorenz ilk makalelerinde 'bir martının kanat çırpışı' örneğini kullandı. Kelebek, 1972'deki konuşmanın başlığını hazırlayan bir meslektaşının önerisiydi.", en: "In early papers Lorenz used 'the flap of a seagull's wings'. The butterfly came from a colleague who titled his 1972 talk." } },
       { img: "Monarch Butterfly Danaus plexippus on Echinacea purpurea 2800px.jpg", caption: { tr: "Monark kelebeği", en: "Monarch butterfly" },

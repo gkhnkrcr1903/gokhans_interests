@@ -309,3 +309,17 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 60px; }
 .closing { margin-top: 40px; padding: 22px; background: var(--panel); border: 2px solid var(--line); border-top: 4px solid var(--yellow); }
 .closing h2 { margin-top: 0; border-top: 0; padding-top: 0; }
 .closing p { font-size: 18px; line-height: 1.8; margin: 0; }
+
+/* ---- Performance (v12) ---- */
+/* The scanline overlay no longer blends with the page (blend modes force full repaints while scrolling). */
+.crt { mix-blend-mode: normal; background: repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0 1px, transparent 1px 3px); will-change: transform; }
+/* A solid header is much cheaper to scroll under than a blurred one. */
+.topbar { backdrop-filter: none; background: rgba(7,9,15,.97); }
+/* Let the browser skip layout and paint for off-screen timeline entries and cards. */
+/* (applied to whole sections, so timeline dots and hover shadows that overflow an entry aren't clipped) */
+.timeline { content-visibility: auto; contain-intrinsic-block-size: auto 1400px; }
+.facts-grid, .chart { content-visibility: auto; contain-intrinsic-block-size: auto 600px; }
+.post-hero { --cover: none; }
+.entry img, .fact img { height: auto; }
+.card .thumb, .post-hero { background-color: var(--bg2); }
+.card .thumb { background-size: cover; background-position: center; transition: opacity .3s; }
