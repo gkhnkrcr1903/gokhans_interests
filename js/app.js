@@ -74,7 +74,7 @@
 
     const sections = p.sections.map((s) => {
       const entries = p.entries.filter((e) => e.section === s.id).map((e) => `
-        <article class="entry ${e.cat} c${filters.findIndex((f) => f.key === e.cat)}">
+        <article class="entry c${filters.findIndex((f) => f.key === e.cat)}" data-cat="${e.cat}">
           ${figure(e.img, L(e.caption) || L(e.title))}
           <div>
             <span class="year">${esc(e.year)}</span><span class="tag">${esc(catLabel(e.cat))}</span>
@@ -144,7 +144,7 @@
     if (btn) {
       app.querySelectorAll(".filters button").forEach((b) => b.classList.toggle("active", b === btn));
       app.querySelectorAll(".entry").forEach((el) =>
-        el.classList.toggle("hidden", btn.dataset.f !== "all" && !el.classList.contains(btn.dataset.f)));
+        el.classList.toggle("hidden", btn.dataset.f !== "all" && el.dataset.cat !== btn.dataset.f));
       return;
     }
     const fig = e.target.closest("figure[data-full]");
