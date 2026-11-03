@@ -14,11 +14,14 @@ window.ABOUT = {
     { icon: "🎂", label: { tr: "Doğum", en: "Born" }, value: { tr: "24 Ocak 1984 (Kova burcu, yani 'farklı düşünür')", en: "24 January 1984 (Aquarius, i.e. 'thinks different')" } },
     { icon: "🎓", label: { tr: "Okul", en: "School" }, value: { tr: "Abant İzzet Baysal Üniversitesi, Fizik (İngilizce)", en: "Abant İzzet Baysal University, Physics (English-medium)" } },
     { icon: "💻", label: { tr: "Meslek", en: "Job" }, value: { tr: "Yazılım Uzmanı", en: "Software Specialist" } },
-    { icon: "📍", label: { tr: "Kuşak", en: "Generation" }, value: { tr: "Gururlu bir 90'lar çocuğu", en: "A proud 90s kid" } }
+    { icon: "📍", label: { tr: "Kuşak", en: "Generation" }, value: { tr: "Gururlu bir 90'lar çocuğu", en: "A proud 90s kid" } },
+    { icon: "☕", label: { tr: "Eski İşler", en: "Past Jobs" }, value: { tr: "Kırtasiye, lokumcu, kafe ve bar", en: "Stationery shop, lokum shop, cafés and bars" } }
   ],
   story: [
     { title: { tr: "Fizikten Yazılıma", en: "From Physics to Software" },
       text: { tr: "Bolu'da, Gölköy kampüsünde fizik okudum — üstelik İngilizce. Newton'un yasalarını, kuantumun tuhaflıklarını ve 'bir kelebek kanat çırparsa…' hesaplarını öğrendim. Sonra fark ettim ki evrenin kaynak kodunu çözmek zor, ama bilgisayarın kaynak kodunu yazmak mümkün. Böylece fizikçi kafasıyla yazılıma geçtim: hâlâ her hatada önce 'sürtünmeyi ihmal ettim mi?' diye düşünürüm.", en: "I studied physics in Bolu on the Gölköy campus — in English, no less. I learned Newton's laws, quantum weirdness and 'if a butterfly flaps its wings…' maths. Then I realised decoding the universe's source code is hard, but writing a computer's source code is doable. So I moved into software with a physicist's brain: with every bug, I still first ask 'did I neglect friction?'" } },
+    { title: { tr: "Özgeçmişin Gizli Bölümleri", en: "The Hidden Chapters of My CV" },
+      text: { tr: "Kariyerim aslında çok erken başladı: küçükken kısa bir süre kırtasiyede çalıştım (silgi kokusu, defter kapları, okul açılışı telaşı) ve bir lokumcuda tezgâhın arkasına geçtim. Lokumcuda çalışırken en büyük sınavım 'tadına bakmak' ile 'stokları eritmek' arasındaki ince çizgiyi korumaktı — itiraf edeyim, her zaman başaramadım :D Sonraki yıllarda bir süre kafelerde ve barlarda çalıştım. Tepsi dengelemeyi, aynı anda üç siparişi akılda tutmayı, en yoğun gecede bile gülümsemeyi ve her kokteylin arkasındaki hikâyeyi orada öğrendim. Kod yazarken sabrımın sırrı belki de budur: 'Bir dakika, hemen geliyorum!'", en: "My career actually started very early: as a kid I worked briefly at a stationery shop (eraser smell, exercise-book covers, back-to-school rush) and stood behind the counter of a Turkish delight shop. At the lokum shop my biggest test was holding the fine line between 'tasting' and 'eating the stock' — I'll admit, I didn't always manage :D Later I spent a while working in cafés and bars. There I learned to balance a tray, keep three orders in my head, smile on the busiest night and the story behind every cocktail. Maybe that's the secret of my patience when coding: 'One minute, coming right up!'" } },
     { title: { tr: "90'lar Kuşağı Olmak", en: "Being a 90s Kid" },
       text: { tr: "Kasedi kalemle saran, internete bağlanırken modemin çığlığını dinleyen, telefon kartını dondurucuya koyup kontör bekleyen son nesildenim. Atari salonunda 'bir jeton daha' dedim, internet kafede 'bir saat daha', şimdi de bilgisayar başında 'bir commit daha' diyorum. Değişen tek şey jetonun fiyatı.", en: "I'm from the last generation that rewound tapes with a pencil, listened to the modem's scream while connecting and put phone cards in the freezer hoping for more credit. At the arcade I said 'one more token', at the internet café 'one more hour', and now at my desk 'one more commit'. The only thing that changed is the price of the token." } },
     { title: { tr: "Bu Blog Neden Var?", en: "Why Does This Blog Exist?" },
@@ -28,7 +31,8 @@ window.ABOUT = {
     { label: { tr: "Teknoloji", en: "Technology" }, value: 95 },
     { label: { tr: "Oyun", en: "Gaming" }, value: 90 },
     { label: { tr: "Film & Dizi", en: "Film & TV" }, value: 85 },
-    { label: { tr: "Kokteyl Bilgisi", en: "Cocktail Knowledge" }, value: 80 },
+    { label: { tr: "Kokteyl Bilgisi", en: "Cocktail Knowledge" }, value: 85 },
+    { label: { tr: "Tepsi Dengesi", en: "Tray Balance" }, value: 80 },
     { label: { tr: "Fizik (hâlâ hatırlanan)", en: "Physics (still remembered)" }, value: 60 },
     { label: { tr: "Erken Yatma", en: "Going to Bed Early" }, value: 10 }
   ],
@@ -44,6 +48,9 @@ window.ABOUT = {
     { tr: "🏆 Çevirmeli modemle 1 MB indirmeye sabretti", en: "🏆 Patiently downloaded 1 MB on dial-up" },
     { tr: "🏆 Fizik diplomasıyla 'Merhaba Dünya' yazdı", en: "🏆 Wrote 'Hello World' with a physics degree" },
     { tr: "🏆 Bolu kışını montsuz atlattı (yalan)", en: "🏆 Survived a Bolu winter without a coat (lie)" },
+    { tr: "🏆 Lokumcuda çalışıp stokların yarısını 'tadım' adı altında bitirdi", en: "🏆 Worked at a lokum shop and 'taste-tested' half the stock" },
+    { tr: "🏆 Kırtasiyede okul açılışı haftasından sağ çıktı", en: "🏆 Survived back-to-school week at a stationery shop" },
+    { tr: "🏆 Barda tek tepside on iki bardak taşıdı, hiçbirini kırmadı (çoğu zaman)", en: "🏆 Carried twelve glasses on one tray without breaking any (mostly)" },
     { tr: "🔒 Erken yatma — henüz açılmadı", en: "🔒 Early to bed — not yet unlocked" }
   ]
 };
