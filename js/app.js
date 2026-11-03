@@ -15,6 +15,8 @@
     document.title = t("siteTitle");
     document.querySelectorAll("[data-i18n]").forEach((el) => (el.textContent = t(el.dataset.i18n)));
     langBtn.textContent = lang === "tr" ? "EN" : "TR";
+    const workLink = document.querySelector('.topbar a[href="#/work"]');
+    if (workLink) workLink.hidden = !(window.WORK && WORK.enabled);
   }
 
   function cards(list = POSTS) {
@@ -262,7 +264,7 @@
     if (parts[0] === "post") app.innerHTML = post(parts[1]);
     else if (parts[0] === "topics") app.innerHTML = topics();
     else if (parts[0] === "about") app.innerHTML = about();
-    else if (parts[0] === "work") app.innerHTML = work(parts[1]);
+    else if (parts[0] === "work" && window.WORK && WORK.enabled) app.innerHTML = work(parts[1]);
     else if (!parts[0]) app.innerHTML = home();
     else app.innerHTML = notFound();
 

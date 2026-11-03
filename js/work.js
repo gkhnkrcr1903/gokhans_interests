@@ -2,6 +2,8 @@
 // Contact details (phone, e-mail), full birth date, marital status and the reference's contact info are
 // intentionally left out of this public page.
 window.WORK = {
+  // Set to true to show the Work / Portfolio page and its menu link again.
+  enabled: false,
   headline: { tr: "Kıdemli Yazılım Geliştirici · .NET ve Web", en: "Senior Software Developer · .NET and Web" },
   intro: {
     tr: "2008'den bu yana kurumsal yazılım geliştiriyorum: sağlık, enerji, savunma, eğitim ve kamu projelerinde backend, veritabanı, raporlama ve entegrasyon tarafında çalıştım. Boş zamanlarımda öğrenmeyi oyuna çeviren uygulamalar ve geliştiricilerin işini hızlandıran araçlar yazıyorum. Aşağıda iş deneyimimi ve kişisel projelerimi bulabilirsiniz.",
