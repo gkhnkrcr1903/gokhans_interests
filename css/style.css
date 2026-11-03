@@ -305,3 +305,7 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 60px; }
 }
 .stat .v, .post-hero h1, .card h3, .about-hero h1 { overflow-wrap: anywhere; }
 @media (max-width: 420px) { .post-hero h1 { font-size: 15px; } }
+.section-more { color: var(--muted); line-height: 1.8; border-left: 3px solid var(--line); padding-left: 14px; }
+.closing { margin-top: 40px; padding: 22px; background: var(--panel); border: 2px solid var(--line); border-top: 4px solid var(--yellow); }
+.closing h2 { margin-top: 0; border-top: 0; padding-top: 0; }
+.closing p { font-size: 18px; line-height: 1.8; margin: 0; }

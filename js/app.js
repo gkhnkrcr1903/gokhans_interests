@@ -80,6 +80,7 @@
       (p.stats ? `<a href="#/post/${p.slug}/stats">${esc(L(p.stats.title))}</a>` : "") +
       (p.facts ? `<a href="#/post/${p.slug}/facts">${esc(L(p.facts.title))}</a>` : "");
 
+    const ex = (window.EXPANSIONS || {})[p.slug] || {};
     const sections = p.sections.map((s) => {
       const entries = p.entries.filter((e) => e.section === s.id).map((e) => `
         <article class="entry c${filters.findIndex((f) => f.key === e.cat)}" data-cat="${e.cat}">
@@ -92,7 +93,7 @@
           </div>
         </article>`).join("");
       return `<h2 id="${s.id}"><span class="era">${esc(s.era)}</span>${esc(L(s.title))}</h2>
-        <p>${esc(L(s.intro))}</p><div class="timeline">${entries}</div>`;
+        <p>${esc(L(s.intro))}</p>${ex.sections && ex.sections[s.id] ? `<p class="section-more">${esc(L(ex.sections[s.id]))}</p>` : ""}<div class="timeline">${entries}</div>`;
     }).join("");
 
     const stats = p.stats ? `
@@ -130,6 +131,7 @@
             ${filters.map((f) => `<button data-f="${f.key}">${esc(L(f.label))}</button>`).join("")}
           </div>
           ${sections}${stats}${facts}
+          ${ex.closing ? `<section class="closing"><h2 id="closing"><span class="era">// THE END</span>${esc(t("closingTitle"))}</h2><p>${esc(L(ex.closing))}</p></section>` : ""}
           ${pager(p)}
         </div>
       </div>`;
