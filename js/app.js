@@ -59,13 +59,15 @@
 
   function figure(name, caption) {
     return `<figure data-full="${esc(img(name, 1280))}" data-cap="${esc(caption)}">
-      <img loading="lazy" src="${esc(img(name))}" alt="${esc(caption)}" onerror="this.outerHTML='<div class=&quot;img-fallback&quot;>${esc(caption).replace(/'/g, "")}</div>'">
+      <img loading="lazy"${/\.svg$/i.test(name) ? ' class="logo"' : ""} src="${esc(img(name))}" alt="${esc(caption)}" onerror="this.outerHTML='<div class=&quot;img-fallback&quot;>${esc(caption).replace(/'/g, "")}</div>'">
       <figcaption>${esc(caption)}</figcaption></figure>`;
   }
 
   function post(slug) {
     const p = POSTS.find((x) => x.slug === slug);
     if (!p) return notFound();
+    const filters = p.filters || [{ key: "pc", label: t("filterPc") }, { key: "game", label: t("filterGame") }];
+    const catLabel = (c) => L((filters.find((f) => f.key === c) || {}).label) || c;
     const toc = p.sections.map((s) => `<a href="#/post/${p.slug}/${s.id}">${esc(L(s.title))}</a>`).join("") +
       (p.stats ? `<a href="#/post/${p.slug}/stats">${esc(L(p.stats.title))}</a>` : "") +
       (p.facts ? `<a href="#/post/${p.slug}/facts">${esc(L(p.facts.title))}</a>` : "");
@@ -75,7 +77,7 @@
         <article class="entry ${e.cat}">
           ${figure(e.img, L(e.caption) || L(e.title))}
           <div>
-            <span class="year">${esc(e.year)}</span><span class="tag">${esc(e.cat === "pc" ? t("filterPc") : t("filterGame"))}</span>
+            <span class="year">${esc(e.year)}</span><span class="tag">${esc(catLabel(e.cat))}</span>
             <h3>${esc(L(e.title))}</h3>
             <p>${esc(L(e.text))}</p>
             ${e.facts ? `<ul class="facts">${L(e.facts).map((f) => `<li>${esc(f)}</li>`).join("")}</ul>` : ""}
@@ -116,8 +118,7 @@
         <div class="prose">
           <div class="filters">
             <button class="active" data-f="all">${esc(t("filterAll"))}</button>
-            <button data-f="pc">${esc(t("filterPc"))}</button>
-            <button data-f="game">${esc(t("filterGame"))}</button>
+            ${filters.map((f) => `<button data-f="${f.key}">${esc(L(f.label))}</button>`).join("")}
           </div>
           ${sections}${stats}${facts}
         </div>

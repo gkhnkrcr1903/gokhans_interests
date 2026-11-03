@@ -135,6 +135,10 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 60px; }
 .entry .tag { font-family: var(--term); font-size: 17px; margin-left: 8px; padding: 0 6px; border: 1px solid currentColor; }
 .entry.pc .tag { color: var(--pink); }
 .entry.game .tag { color: var(--green); }
+.entry.handheld::before { background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
+.entry.handheld .tag { color: var(--yellow); }
+.entry.home::before { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.entry.home .tag { color: var(--cyan); }
 .entry h3 { font-size: 20px; margin: 8px 0; color: #fff; }
 .entry p { margin: 0; color: var(--text); font-size: 16px; }
 .entry .facts { list-style: none; padding: 0; margin: 10px 0 0; font-family: var(--term); font-size: 18px; color: var(--cyan); }
@@ -191,3 +195,4 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 60px; }
 .fact h3 { font-size: 17px; margin: 6px 0; color: #fff; }
 .fact p { font-size: 15px; color: var(--muted); margin: 0; }
 @media (max-width: 520px) { .bar-row { grid-template-columns: 100px 1fr 64px; font-size: 16px; } }
+.entry img.logo, .fact img.logo { object-fit: contain; padding: 18px; background: #e9edf5; }
