@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gökhan'ın İlgileri</title>
+  <meta name="description" content="Gökhan'ın ilgi alanları üzerine ayrıntılı yazılar: bilgisayarlar, oyunlar ve daha fazlası.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="crt" aria-hidden="true"></div>
+  <header class="topbar">
+    <a href="#/" class="logo"><span class="logo-cursor">▮</span> <span data-i18n="siteTitle"></span></a>
+    <nav>
+      <a href="#/" data-i18n="navHome"></a>
+      <a href="#/topics" data-i18n="navTopics"></a>
+      <button id="langToggle" class="lang" aria-label="Language">EN</button>
+    </nav>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="footer">
+    <p><span data-i18n="footer"></span> · <span data-i18n="imgCredit"></span></p>
+  </footer>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <figure><img alt=""><figcaption></figcaption></figure>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/posts/computer-history.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

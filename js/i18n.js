@@ -1,0 +1,47 @@
+// UI strings. Post content lives in js/posts/*.js
+window.I18N = {
+  tr: {
+    siteTitle: "Gökhan'ın İlgileri",
+    navHome: "Ana Sayfa",
+    navTopics: "Konular",
+    heroLine1: "> merhaba, dünya_",
+    heroText: "Bilgisayarlar, oyunlar ve beni meraklandıran her şey üzerine derinlemesine yazılar. Insert coin, başlayalım.",
+    heroCta: "▶ İlk yazıyı oku",
+    topicsTitle: "Konular",
+    comingSoon: "Yakında",
+    readMore: "Oku →",
+    minRead: "dk okuma",
+    filterAll: "Hepsi",
+    filterPc: "Bilgisayarlar",
+    filterGame: "Oyunlar",
+    toc: "İçindekiler",
+    timeline: "Zaman Çizelgesi",
+    back: "← Konulara dön",
+    footer: "© 2026 Gökhan'ın İlgileri",
+    imgCredit: "Görseller: Wikimedia Commons (ilgili lisanslar altında)",
+    notFound: "Sayfa bulunamadı. GAME OVER.",
+    soonTopics: ["Uzay Keşfi", "Retro Konsollar Rehberi", "Yapay Zekâ Tarihi"]
+  },
+  en: {
+    siteTitle: "Gökhan's Interests",
+    navHome: "Home",
+    navTopics: "Topics",
+    heroLine1: "> hello, world_",
+    heroText: "In-depth writing on computers, games and everything else that sparks my curiosity. Insert coin to begin.",
+    heroCta: "▶ Read the first post",
+    topicsTitle: "Topics",
+    comingSoon: "Coming soon",
+    readMore: "Read →",
+    minRead: "min read",
+    filterAll: "All",
+    filterPc: "Computers",
+    filterGame: "Games",
+    toc: "Contents",
+    timeline: "Timeline",
+    back: "← Back to topics",
+    footer: "© 2026 Gökhan's Interests",
+    imgCredit: "Images: Wikimedia Commons (under their respective licenses)",
+    notFound: "Page not found. GAME OVER.",
+    soonTopics: ["Space Exploration", "Retro Console Guide", "History of AI"]
+  }
+};
